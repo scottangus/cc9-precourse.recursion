@@ -17,6 +17,21 @@
  *   rockPaperScissors(4); // => [['rock', 'rock', 'rock', 'rock'], etc...]
  */
 
-const rockPaperScissors = () => {
-  // Your code here
+const rockPaperScissors = (input) => {
+  const length = (input === undefined) ? 3 : input;
+  var options = ["rock","paper","scissors"];
+  var results = [];
+  function recursion(roundsRemaining, gameArray){
+    if (roundsRemaining === 0) {
+      results.push(gameArray);
+      return;
+    }
+    options.forEach(function(element){
+      //gameArray.push(element);
+      recursion(roundsRemaining - 1, gameArray.concat(element));
+    })
+  }
+  recursion(length, []);
+  //console.log(results);
+  return results;
 };
