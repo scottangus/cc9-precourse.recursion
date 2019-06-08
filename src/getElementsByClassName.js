@@ -10,6 +10,25 @@
   But we don't like easy! So we'll make you write your own.
 */
 
-const getElementsByClassName = () => {
-  // YOUR CODE HERE
+const getElementsByClassName = (input) => {
+  //console.log(typeof input);
+  //console.log(String(window.document));
+  //console.log(document.documentElement.hasChildNodes());
+  var results = [];
+  function recursion(currentLevel){
+    if ("className" in currentLevel){
+      if (currentLevel.className.indexOf(input) !== -1){results.push(currentLevel);}
+    }
+    if (currentLevel.hasChildNodes()){
+      for (let node of currentLevel.childNodes){
+        //console.log(node);
+        //if (node.className === input){
+          //results.push(node);
+        //}
+        recursion(node);
+      }
+    }
+  }
+  recursion(document.documentElement)
+  return results;
 };
