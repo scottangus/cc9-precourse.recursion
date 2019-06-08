@@ -24,14 +24,16 @@ const stringifyJSON = (input) => {
     }
     return "[" + results + "]";
   }
+  else if(typeof input === "object" && Object.prototype.toString.call(input) === "[object Date]"){
+    //console.log("I am a Date!");
+    results.push("\"" + input.toISOString() + "\"");
+    return results;
+  }
   else if(typeof input === "object"){
     //console.log("I am an object");
     for (var currentKey in input){
       //console.log(Object.prototype.toString.call(input[currentKey]));
-      if(Object.prototype.toString.call(input[currentKey]) === "[object Date]"){
-        results.push(stringifyJSON(currentKey) + ":" + "\"" + input[currentKey].toISOString() + "\"");
-      }
-      else if (input[currentKey] !== undefined && typeof input[currentKey] !== "function"){
+      if (input[currentKey] !== undefined && typeof input[currentKey] !== "function"){
         results.push(stringifyJSON(currentKey) + ":" + stringifyJSON(input[currentKey]));
       }
       
