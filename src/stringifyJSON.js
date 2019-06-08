@@ -26,8 +26,8 @@ const stringifyJSON = (input) => {
   }
   else if(typeof input === "object" && Object.prototype.toString.call(input) === "[object Date]"){
     //console.log("I am a Date!");
-    results.push("\"" + input.toISOString() + "\"");
-    return results;
+    //results.push("\"" + input.toISOString() + "\"");
+    return "\"" + input.toISOString() + "\"";
   }
   else if(typeof input === "object"){
     //console.log("I am an object");
